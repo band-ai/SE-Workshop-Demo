@@ -6,4 +6,4 @@ def setup_logging(level: int = logging.INFO) -> None:
         level=logging.WARNING,
         format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
     )
-    logging.getLogger("thenvoi").setLevel(level)
+    logging.getLogger("band").setLevel(level)

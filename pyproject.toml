@@ -1,11 +1,11 @@
 [project]
 name = "band-workshop-demo"
 version = "0.1.0"
-description = "Workshop demo: two agents on the band.ai (thenvoi) platform — a LangGraph personal assistant and an Anthropic weather agent."
+description = "Workshop demo: two agents on the band.ai platform — a LangGraph personal assistant and an Anthropic weather agent."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "thenvoi-sdk[langgraph,anthropic] @ git+https://github.com/thenvoi/thenvoi-sdk-python.git",
+    "band-sdk[langgraph,anthropic] @ git+https://github.com/band-ai/band-sdk-python.git",
     "langchain-anthropic>=0.3.0",
     "python-dotenv>=1.0.1",
     "httpx>=0.27.0",

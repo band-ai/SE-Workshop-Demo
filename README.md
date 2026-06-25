@@ -1,7 +1,7 @@
 # band.ai Workshop: Dynamic Peer Discovery
 
-A two-agent demo built on the [band.ai](https://band.ai) platform (the SDK is
-still published as `thenvoi-sdk`). The demo's punchline:
+A two-agent demo built on the [band.ai](https://band.ai) platform. The demo's
+punchline:
 
 > Agents on band.ai don't have a fixed view of "who can help." When a new
 > agent shows up in the directory mid-conversation, an existing agent that
@@ -114,14 +114,14 @@ platform UI in Part 3.
 
 ```bash
 # Pick a folder you like, then:
-git clone https://github.com/thenvoi/SE-Workshop-Demo.git
+git clone https://github.com/band-ai/SE-Workshop-Demo.git
 cd SE-Workshop-Demo
 
 # uv reads pyproject.toml, creates .venv/, installs everything.
 uv sync
 ```
 
-This pulls `thenvoi-sdk` from GitHub plus LangGraph, langchain-anthropic,
+This pulls `band-sdk` from GitHub plus LangGraph, langchain-anthropic,
 httpx, etc. First run takes a minute; subsequent runs are instant.
 
 Copy both config templates locally — `.env` for keys, `agent_config.yaml` for
@@ -200,8 +200,8 @@ You should see log lines like:
 
 ```
 2026-05-19 10:00:00 [INFO] agents.personal_assistant.main: Starting personal assistant agent (id=...)…
-2026-05-19 10:00:01 [INFO] thenvoi.client: Connected to wss://app.thenvoi.com/...
-2026-05-19 10:00:01 [INFO] thenvoi.runtime: Joined channel agent:...
+2026-05-19 10:00:01 [INFO] band.client: Connected to wss://app.band.ai/...
+2026-05-19 10:00:01 [INFO] band.runtime: Joined channel agent:...
 ```
 
 If you see those, the agent is live and waiting. Leave this terminal open.
@@ -330,14 +330,6 @@ adapter = AnthropicAdapter(
 The Pydantic model's class docstring and field descriptions become the tool
 schema Claude sees. See
 [`agents/weather/weather_tool.py`](agents/weather/weather_tool.py).
-
-## Naming note: BAND vs THENVOI
-
-The platform is **band.ai**; the Python package is still **`thenvoi-sdk`**.
-This repo uses `BAND_*` env var names in `.env` and passes them explicitly
-into `Agent.create(ws_url=..., rest_url=...)`, so the SDK never sees the
-renamed vars. If you ever cross-reference SDK docs, mentally translate
-`THENVOI_*` → `BAND_*` for this project.
 
 ---
 

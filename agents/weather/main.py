@@ -6,10 +6,10 @@ import os
 
 from dotenv import load_dotenv
 
-from thenvoi import Agent
-from thenvoi.adapters import AnthropicAdapter
-from thenvoi.config import load_agent_config
-from thenvoi.core.types import AdapterFeatures, Emit
+from band import Agent
+from band.adapters import AnthropicAdapter
+from band.config import load_agent_config
+from band.core.types import AdapterFeatures, Emit
 
 from agents._logging import setup_logging
 

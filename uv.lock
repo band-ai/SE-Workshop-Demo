@@ -181,24 +181,67 @@ wheels = [
 ]
 
 [[package]]
+name = "band-client-rest"
+version = "0.0.10"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "httpx" },
+    { name = "pydantic" },
+    { name = "pydantic-core" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/21/e0/600527e9da77b0bda58ba6e48d16e6070ced930e699a656b609f360318b6/band_client_rest-0.0.10.tar.gz", hash = "sha256:d3a753d9cf479949264f7092b550b2616e93da68ab32f23acc2a06a6b69019c7", size = 106806, upload-time = "2026-06-12T15:26:44.651Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/73/2c/6c6d4a76d0bbe5a63103add4b50ebdc4184c28afe64b1f7271725087d4f1/band_client_rest-0.0.10-py3-none-any.whl", hash = "sha256:7b900a6fefd25f25677e20fb77378294d5f34e29d583ef5b197fe96724834d7a", size = 246079, upload-time = "2026-06-12T15:26:43.302Z" },
+]
+
+[[package]]
+name = "band-sdk"
+version = "1.1.0"
+source = { git = "https://github.com/band-ai/band-sdk-python.git#0039d3600b4fe4c02c1e0932010b0b53dcb438ad" }
+dependencies = [
+    { name = "band-client-rest" },
+    { name = "cryptography" },
+    { name = "phoenix-channels-python-client" },
+    { name = "python-dotenv" },
+    { name = "pyyaml" },
+]
+
+[package.optional-dependencies]
+anthropic = [
+    { name = "anthropic" },
+]
+langgraph = [
+    { name = "beautifulsoup4" },
+    { name = "langchain" },
+    { name = "langchain-anthropic" },
+    { name = "langchain-community" },
+    { name = "langchain-core" },
+    { name = "langchain-openai" },
+    { name = "langchain-text-splitters" },
+    { name = "langgraph" },
+    { name = "openai" },
+]
+
+[[package]]
 name = "band-workshop-demo"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "band-sdk", extra = ["anthropic", "langgraph"] },
     { name = "httpx" },
     { name = "langchain-anthropic" },
     { name = "pydantic" },
     { name = "python-dotenv" },
-    { name = "thenvoi-sdk", extra = ["anthropic", "langgraph"] },
 ]
 
 [package.metadata]
 requires-dist = [
+    { name = "band-sdk", extras = ["langgraph", "anthropic"], git = "https://github.com/band-ai/band-sdk-python.git" },
     { name = "httpx", specifier = ">=0.27.0" },
     { name = "langchain-anthropic", specifier = ">=0.3.0" },
     { name = "pydantic", specifier = ">=2.0" },
     { name = "python-dotenv", specifier = ">=1.0.1" },
-    { name = "thenvoi-sdk", extras = ["langgraph", "anthropic"], git = "https://github.com/thenvoi/thenvoi-sdk-python.git" },
 ]
 
 [[package]]
@@ -1909,49 +1952,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/47/c6/ee486fd809e357697ee8a44d3d69222b344920433d3b6666ccd9b374630c/tenacity-9.1.4.tar.gz", hash = "sha256:adb31d4c263f2bd041081ab33b498309a57c77f9acf2db65aadf0898179cf93a", size = 49413, upload-time = "2026-02-07T10:45:33.841Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/d7/c1/eb8f9debc45d3b7918a32ab756658a0904732f75e555402972246b0b8e71/tenacity-9.1.4-py3-none-any.whl", hash = "sha256:6095a360c919085f28c6527de529e76a06ad89b23659fa881ae0649b867a9d55", size = 28926, upload-time = "2026-02-07T10:45:32.24Z" },
-]
-
-[[package]]
-name = "thenvoi-client-rest"
-version = "0.0.7"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "httpx" },
-    { name = "pydantic" },
-    { name = "pydantic-core" },
-    { name = "typing-extensions" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/54/b8/077727592881e2bce52d9cd4198ddff4d2109eb30a456fe29bdd84eacba0/thenvoi_client_rest-0.0.7.tar.gz", hash = "sha256:1f793a96449556c304bbecce79db0ae2d8044e32b6c137e50c608d09cd97ddb3", size = 95101, upload-time = "2026-04-12T13:22:44.949Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/41/f4/61b5a86a1f3bbaeb09f46a01d019a2c0df0f6bf57494745ee670eee9e68b/thenvoi_client_rest-0.0.7-py3-none-any.whl", hash = "sha256:60b572ed3b64d2acaf447e50f36ea064506c14ca6c7d6ca9b3b197ccbc68c70f", size = 233953, upload-time = "2026-04-12T13:22:43.351Z" },
-]
-
-[[package]]
-name = "thenvoi-sdk"
-version = "0.2.9"
-source = { git = "https://github.com/thenvoi/thenvoi-sdk-python.git#9a1718d67f61a9e944aae8ff6173244ccbad0cc5" }
-dependencies = [
-    { name = "cryptography" },
-    { name = "phoenix-channels-python-client" },
-    { name = "python-dotenv" },
-    { name = "pyyaml" },
-    { name = "thenvoi-client-rest" },
-]
-
-[package.optional-dependencies]
-anthropic = [
-    { name = "anthropic" },
-]
-langgraph = [
-    { name = "beautifulsoup4" },
-    { name = "langchain" },
-    { name = "langchain-anthropic" },
-    { name = "langchain-community" },
-    { name = "langchain-core" },
-    { name = "langchain-openai" },
-    { name = "langchain-text-splitters" },
-    { name = "langgraph" },
-    { name = "openai" },
 ]
 
 [[package]]
