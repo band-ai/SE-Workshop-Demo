@@ -302,9 +302,10 @@ SE-Workshop-Demo/
 
 ```python
 adapter = LangGraphAdapter(
+    LangGraphAdapterConfig(custom_section=SYSTEM_PROMPT),
     llm=ChatAnthropic(model="claude-sonnet-4-6", max_tokens=4096),
     checkpointer=InMemorySaver(),
-    custom_section=SYSTEM_PROMPT,
+    emit=(),
 )
 agent = Agent.create(adapter=adapter, agent_id=..., api_key=..., ws_url=..., rest_url=...)
 await agent.run()
@@ -321,9 +322,12 @@ pairs:
 
 ```python
 adapter = AnthropicAdapter(
-    model="claude-sonnet-4-6",
-    prompt=SYSTEM_PROMPT,
+    AnthropicAdapterConfig(
+        model="claude-sonnet-4-6",
+        custom_section=SYSTEM_PROMPT,
+    ),
     additional_tools=[(WeatherInput, get_weather)],
+    emit=Emit.TOOL_CALLS,
 )
 ```
 
