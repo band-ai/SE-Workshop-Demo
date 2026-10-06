@@ -200,11 +200,17 @@ You should see log lines like:
 
 ```
 2026-05-19 10:00:00 [INFO] agents.personal_assistant.main: Starting personal assistant agent (id=...)…
-2026-05-19 10:00:01 [INFO] band.client: Connected to wss://app.band.ai/...
-2026-05-19 10:00:01 [INFO] band.runtime: Joined channel agent:...
+2026-05-19 10:00:00 [INFO] band.adapters.langgraph: LangGraph adapter started for agent: Personal Assistant
+2026-05-19 10:00:00 [INFO] band.runtime.runtime: Starting AgentRuntime for agent ...
+2026-05-19 10:00:01 [INFO] band.platform.link: Connected to platform
+2026-05-19 10:00:01 [INFO] band.agent: Agent started: Personal Assistant (band-sdk 4.0.0)
 ```
 
-If you see those, the agent is live and waiting. Leave this terminal open.
+(plus a few `[WebSocket] Subscribing/Subscribed to topic: ...` lines in
+between.)
+
+If you see `Agent started: Personal Assistant`, the agent is live and
+waiting. Leave this terminal open.
 
 ## Step 3 — Try the "before" moment
 
@@ -253,16 +259,18 @@ Now run the weather agent in the second terminal:
 uv run weather-agent
 ```
 
-You should again see "Starting…" / "Connected" / "Joined channel" log lines.
+You should again see `Connected to platform` and
+`Agent started: Weather Agent (band-sdk 4.0.0)`.
 The weather agent is now live and listed in the band.ai directory — but it is
 **not** part of the chat from Step 3.
 
 ## Step 5 — Re-ask in the *same* chat
 
 Go back to the chat from Step 3 — **do not open a new one**. Ask the same
-question again:
+question again — **including the `@Personal Assistant` mention** (the
+assistant only responds to messages that mention it):
 
-> *What should I wear in Tokyo today?*
+> *@Personal Assistant What should I wear in Tokyo today?*
 
 What you should see:
 
@@ -360,4 +368,12 @@ a country: `Springfield, IL`.
 question anyway.** Likely you started the weather agent first, or it's still
 running from a previous demo. Quit it (Ctrl-C in its terminal), refresh the
 band.ai directory, and re-ask in the chat.
+
+**The personal assistant doesn't reply at all.** Make sure your message
+@mentions it (type `@` and pick **Personal Assistant**). Agents in a chat only
+respond to messages that mention them.
+
+**I see `[WARNING] ... Received event '...' but no handler registered`.**
+Harmless — the platform sends some events (like chat title or presence changes)
+that the agents don't need. You can ignore these.
 

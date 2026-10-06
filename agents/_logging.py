@@ -7,3 +7,4 @@ def setup_logging(level: int = logging.INFO) -> None:
         format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
     )
     logging.getLogger("band").setLevel(level)
+    logging.getLogger("agents").setLevel(level)
