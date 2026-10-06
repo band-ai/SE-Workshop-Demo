@@ -13,7 +13,7 @@ from langchain_anthropic import ChatAnthropic
 from langgraph.checkpoint.memory import InMemorySaver
 
 from band import Agent
-from band.adapters import LangGraphAdapter
+from band.adapters import LangGraphAdapter, LangGraphAdapterConfig
 from band.config import load_agent_config
 
 from agents._logging import setup_logging
@@ -48,9 +48,10 @@ async def main() -> None:
     agent_id, api_key = load_agent_config("personal_assistant")
 
     adapter = LangGraphAdapter(
+        LangGraphAdapterConfig(custom_section=SYSTEM_PROMPT),
         llm=ChatAnthropic(model="claude-sonnet-4-6", max_tokens=4096),
         checkpointer=InMemorySaver(),
-        custom_section=SYSTEM_PROMPT,
+        emit=(),
     )
 
     agent = Agent.create(

@@ -7,9 +7,9 @@ import os
 from dotenv import load_dotenv
 
 from band import Agent
-from band.adapters import AnthropicAdapter
+from band.adapters import AnthropicAdapter, AnthropicAdapterConfig
 from band.config import load_agent_config
-from band.core.types import AdapterFeatures, Emit
+from band.core.types import Emit
 
 from agents._logging import setup_logging
 
@@ -39,10 +39,12 @@ async def main() -> None:
     agent_id, api_key = load_agent_config("weather_agent")
 
     adapter = AnthropicAdapter(
-        model="claude-sonnet-4-6",
-        prompt=SYSTEM_PROMPT,
+        AnthropicAdapterConfig(
+            model="claude-sonnet-4-6",
+            custom_section=SYSTEM_PROMPT,
+        ),
         additional_tools=[(WeatherInput, get_weather)],
-        features=AdapterFeatures(emit={Emit.EXECUTION}),
+        emit=Emit.TOOL_CALLS,
     )
 
     agent = Agent.create(
