@@ -203,11 +203,11 @@ You should see log lines like:
 2026-05-19 10:00:00 [INFO] band.adapters.langgraph: LangGraph adapter started for agent: Personal Assistant
 2026-05-19 10:00:00 [INFO] band.runtime.runtime: Starting AgentRuntime for agent ...
 2026-05-19 10:00:01 [INFO] band.platform.link: Connected to platform
-2026-05-19 10:00:01 [INFO] band.agent: Agent started: Personal Assistant (band-sdk 4.0.0)
+2026-05-19 10:00:01 [INFO] band.agent: Agent started: Personal Assistant (band-sdk ...)
 ```
 
-(plus a few `[WebSocket] Subscribing/Subscribed to topic: ...` lines in
-between.)
+(plus a few other `[INFO]` lines in between, such as
+`[WebSocket] Subscribing to topic: ...`.)
 
 If you see `Agent started: Personal Assistant`, the agent is live and
 waiting. Leave this terminal open.
@@ -260,7 +260,7 @@ uv run weather-agent
 ```
 
 You should again see `Connected to platform` and
-`Agent started: Weather Agent (band-sdk 4.0.0)`.
+`Agent started: Weather Agent`.
 The weather agent is now live and listed in the band.ai directory — but it is
 **not** part of the chat from Step 3.
 
@@ -376,4 +376,3 @@ respond to messages that mention them.
 **I see `[WARNING] ... Received event '...' but no handler registered`.**
 Harmless — the platform sends some events (like chat title or presence changes)
 that the agents don't need. You can ignore these.
-
