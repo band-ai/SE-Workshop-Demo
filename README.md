@@ -154,7 +154,7 @@ the **Connect Remote Agent** button (top right):
 > Agent"). Our agents bring their own reasoning loop — that's the "remote"
 > case.
 
-You'll land on the agent setup form:
+A setup dialog opens:
 
 ![Connect Remote Agent setup form](docs/screenshots/02-connect-remote-agent.png)
 
@@ -177,7 +177,7 @@ Fill in:
 - ⬜ **List in public directory** — leave **OFF** (off by default). Workshop
   agents shouldn't be public.
 
-Click **Connect Remote Agent**. A success modal appears with the agent's ID,
+Click **Connect Agent**. A success modal appears with the agent's ID,
 API Key, and Handle:
 
 ![Agent Created Successfully modal](docs/screenshots/03-agent-created-modal.png)
@@ -249,7 +249,7 @@ In the band.ai web UI, repeat the same flow from Step 1:
      ```
 3. Checkboxes: **Personal Registry Access ON**, **List in public directory
    OFF** — same as before.
-4. Click **Connect Remote Agent**, then copy the `agent_id` and API key from
+4. Click **Connect Agent**, then copy the `agent_id` and API key from
    the success modal and paste them into the `weather_agent:` block of
    `agent_config.yaml`.
 
