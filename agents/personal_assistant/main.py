@@ -15,6 +15,7 @@ from langgraph.checkpoint.memory import InMemorySaver
 from band import Agent
 from band.adapters import LangGraphAdapter, LangGraphAdapterConfig
 from band.config import load_agent_config
+from band.core.types import Emit
 
 from agents._logging import setup_logging
 
@@ -51,7 +52,7 @@ async def main() -> None:
         LangGraphAdapterConfig(custom_section=SYSTEM_PROMPT),
         llm=ChatAnthropic(model="claude-sonnet-4-6", max_tokens=4096),
         checkpointer=InMemorySaver(),
-        emit=(),
+        emit=Emit.TOOL_CALLS,
     )
 
     agent = Agent.create(

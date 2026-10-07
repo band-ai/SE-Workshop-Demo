@@ -313,7 +313,7 @@ adapter = LangGraphAdapter(
     LangGraphAdapterConfig(custom_section=SYSTEM_PROMPT),
     llm=ChatAnthropic(model="claude-sonnet-4-6", max_tokens=4096),
     checkpointer=InMemorySaver(),
-    emit=(),
+    emit=Emit.TOOL_CALLS,
 )
 agent = Agent.create(adapter=adapter, agent_id=..., api_key=..., ws_url=..., rest_url=...)
 await agent.run()
